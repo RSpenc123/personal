@@ -45,6 +45,12 @@ module.exports = {
         if(req.session.user){
             res.status(200).send(req.session.user)
         }
+    },
+    getTheUser: async (req,res) =>{
+        const db = req.app.get('db')
+        let text = await db.getUser()
+        res.status(200).send(text)
+        
     }
 
 }

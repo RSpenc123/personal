@@ -19,11 +19,17 @@ private_id int)
 create table private_id(
 title text,
 content text,
-id serial primary key)
+id serial primary key,
+username varchar(50),
+user_id int
+add foreign key (user_id) references personal_user(id)
+
+)
 
 create table public_id(
 title text,
 content text,
 public_id serial primary key,
 username varchar(50),
-genre varchar(20))
+genre varchar(20),
+Image text)

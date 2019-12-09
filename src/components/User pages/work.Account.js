@@ -5,22 +5,24 @@ import {updateUser} from "../../dux/userReducer"
 import {Link} from 'react-router-dom'
 import {getPrivate} from '../../dux/privateReducer'
 import {getPrivateId} from '../../dux/privateReducer'
+import {deletePrivate} from '../../dux/privateReducer'
 
-
+ 
 class Work extends Component{
     constructor(){
         super();
         this.state = {}
     }
     componentDidMount(){
-        this.props.getPrivate()
+        this.props.getPrivate(this.props.store.userReducer.User.id)
     }
     
     render(){
         //   console.log("props", this.props)
         console.log(this.props)
-    console.log(this.props.privateReducer.text)
-    const all = this.props.privateReducer.text
+    console.log(this.props.store.privateReducer.text)
+    const all = this.props.store.privateReducer.text
+    console.log(this.props.store.userReducer.User.id)
     console.log(all)
             return(
               
@@ -39,9 +41,10 @@ class Work extends Component{
                     </div>
                     <div className = 'WorkI'>
                     {all ? ( <div className = "workpls">{all.map((e, i) => {
-        return <div className = "uploadItem"><Link to={`/Edit/${e.id}`}><button className = "uploadImage">
+        return <div className = "uploadItem"><Link to={`/Edit/${e.id}`}> <button className = "uploadImage">
         {console.log(e.id)}
-         </button></Link><button> I</button><div className="e" private_id >{e.title}</div> </div>
+        <img className = "editImage" src="https://image.flaticon.com/icons/svg/61/61456.svg" alt="Reeeee"></img>
+         </button></Link> <div className = "yeah"><b className="e" private_id >{e.title}</b><button onClick ={() => deletePrivate(e.id)}  > X</button> </div></div>
     })}</div>) : null}
             </div>
                     {/* <div className = 'WorkI'>
@@ -67,11 +70,11 @@ class Work extends Component{
 
     function mapStateToProps(state) {
         return{
-            privateReducer: state.privateReducer
+            store: state
         }
     }
 
 // export default connect(mapStateToProps,{updateUser})(account)
 
 
-export default connect(mapStateToProps, {getPrivate})(Work)
+export default connect(mapStateToProps, {getPrivate, deletePrivate})(Work)

@@ -2,6 +2,7 @@ import ReactQuill, { Quill } from 'react-quill'; // ES6
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import {addPrivate} from '../dux/privateReducer'
+import {getUser} from '../dux/userReducer'
 
 
 
@@ -78,13 +79,15 @@ class Qe extends Component {
   render(props) {
       console.log("potato2",this.potato)
       const title = this.state
-      console.log(this.porta)
+      console.log(this.props)
+      console.log(this.props.getUser)
+      console.log(this.props.store.userReducer.User.id)
 
       return (
         <div>
           <button
                     onClick={()=> {
-                        this.props.addPrivate(title, this.state.comments) 
+                        this.props.addPrivate(title, this.state.comments, this.props.store.userReducer.User.id) 
                       this.render()
                     }}    
                 >Save</button>
@@ -116,8 +119,9 @@ class Qe extends Component {
 
 function mapStateToProps (state) {
   return {
-      inputsReducer: state.inputsReducer
+    
+      store: state
   }
-}
+} 
 
-export default connect(mapStateToProps, { addPrivate })(Qe)
+export default connect(mapStateToProps, { addPrivate, getUser })(Qe)

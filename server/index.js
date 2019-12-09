@@ -28,8 +28,10 @@ app.post('/auth/register', UserCTRL.register)
 app.post('/auth/login', UserCTRL.login)
 app.post('/auth/logout', UserCTRL.logout)
 app.post('/auth/user', UserCTRL.getUser)
+app.get('/auth/getUser', UserCTRL.getTheUser)
 
-app.get('/auth/getPrivate', PrivateCTRL.getPrivateText)
+app.get('/auth/getPrivate/:id', PrivateCTRL.getPrivate)
+app.get('/auth/getPrivateText', PrivateCTRL.getPrivateText)
 app.post('/auth/addPrivate', PrivateCTRL.addPrivate)
 app.get('/auth/getPrivateId/:id', PrivateCTRL.getPrivateId)
 app.put('/auth/editPrivate/:id', PrivateCTRL.editPrivate)
@@ -39,6 +41,9 @@ app.get('/auth/getPublic', PublicCTRL.getPublicText)
 app.post('/auth/addPublic', PublicCTRL.addPublic)
 app.put('/auth/editPublic/:id', PublicCTRL.editPublic)
 app.delete('/auth/deletePublic/:id', PublicCTRL.deletePublic)
+app.get('/auth/getPublicId/:id', PublicCTRL.getPublicId)
+app.get('/auth/getPublicById/:id', PublicCTRL.getPublicById)
+
 
 const port = SERVER_PORT
 app.listen(port,() => console.log(`we up on ${port} baby!`))

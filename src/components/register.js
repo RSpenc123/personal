@@ -33,18 +33,21 @@ class register extends Component{
 
     render(){
         return(
-            <div>
+            <div className = 'register'>
+                <div className='xxx'>
+                <p>Username Here!</p>
                 <input
                 value = {this.state.username}
                 name = "username"
                 onChange = {(e) => this.handleInput(e)}/>
+                <p>Password Here!</p>
                 <input
                 value = {this.state.password}
                 name = "password"
                 onChange = {(e) => this.handleInput(e)}/> 
              
                 <button onClick={this.handleRegister}>Register</button> 
-                
+                </div>
                 
                  </div>
         )
